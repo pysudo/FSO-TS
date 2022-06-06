@@ -19,7 +19,7 @@ const parseArguments = (args: Array<string>): PhysicalParams => {
 
 
 const calculateBmi = (height: number, weight: number): string => {
-  if (weight == 0)  throw new Error("Weight cannot be zero");
+  if (weight === 0)  throw new Error("Weight cannot be zero");
 
   const bmi: number = (height / (weight ** 2)) * 703;
 
@@ -51,8 +51,10 @@ const calculateBmi = (height: number, weight: number): string => {
 
 
 try {
-  const {height, weight} = parseArguments(process.argv);
-  console.log(calculateBmi(height, weight));
+  if (process.argv[1] === __filename) {
+    const {height, weight} = parseArguments(process.argv);
+    console.log(calculateBmi(height, weight));
+  }
 }
 catch(error: unknown) {
   let errorMsg: string = "Something went wrong.";
@@ -63,5 +65,4 @@ catch(error: unknown) {
 }
 
 
-// Silence block-scoped redeclaration error
-export {};
+export { calculateBmi };
