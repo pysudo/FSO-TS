@@ -15,7 +15,7 @@ const parseArguments = (args: Array<string>): PhysicalParams => {
     height: Number(args[2]),
     weight: Number(args[3]),
   };
-}
+};
 
 
 const calculateBmi = (height: number, weight: number): string => {
@@ -47,7 +47,7 @@ const calculateBmi = (height: number, weight: number): string => {
   else {
     return "Obese (Class III)";
   }
-}
+};
 
 
 try {
@@ -57,7 +57,7 @@ try {
   }
 }
 catch(error: unknown) {
-  let errorMsg: string = "Something went wrong.";
+  let errorMsg = "Something went wrong.";
   if (error instanceof Error) {
     errorMsg += " Error: " + error.message;
   }

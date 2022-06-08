@@ -30,7 +30,7 @@ const parseArguments = (args: Array<string>): ExerciseStats => {
     exerciseHours,
     target: Number(target)
   };
-}
+};
 
 
 const calculateExercises = (
@@ -45,7 +45,7 @@ const calculateExercises = (
   const average: number = totalHours / periodLength;
   const performanceRatio: number = (average / target) * 100;
 
-  let rating: number
+  let rating: number;
   let ratingDescription: string;
   if (performanceRatio < 50) {
     rating = 1;
@@ -55,7 +55,7 @@ const calculateExercises = (
     rating = 2;
     ratingDescription = "Good";
   }
-  else if (performanceRatio > 100) {
+  else {
     rating = 3;
     ratingDescription = "Exceptional";
   }
@@ -69,15 +69,17 @@ const calculateExercises = (
     target,
     average
   };
-}
+};
 
 
 try {
-  const {exerciseHours, target} = parseArguments(process.argv);
-  console.log(calculateExercises(exerciseHours, target));
+  if (process.argv[1] === __filename) {
+    const {exerciseHours, target} = parseArguments(process.argv);
+    console.log(calculateExercises(exerciseHours, target));
+  }
 }
 catch (error: unknown) {
-  let errorMsg: string = "Something went wrong.";
+  let errorMsg = "Something went wrong.";
   if (error instanceof Error) {
     errorMsg += " Error: " + error.message;
   }
@@ -85,5 +87,4 @@ catch (error: unknown) {
 }
 
 
-// Silence block-scoped redeclaration error
-export {};
+export { calculateExercises };
