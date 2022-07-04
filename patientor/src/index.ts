@@ -8,11 +8,13 @@ const app = express();
 
 
 app.use(function (_req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-    res.setHeader('Access-Control-Allow-Methods', 'GET');
+    res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+    res.setHeader("Access-Control-Allow-Methods", "GET");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
     next();
 });
+app.use(express.json());
 
 
 app.get("/api/ping", (_req, res) => {
